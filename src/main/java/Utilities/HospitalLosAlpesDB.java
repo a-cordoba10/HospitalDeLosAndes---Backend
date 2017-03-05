@@ -10,7 +10,7 @@ import com.mongodb.MongoClientURI;
 
 public class HospitalLosAlpesDB {
 	
-	private static String MONGO__URI = "mongodb://elcrack:masterdb@ds145329.mlab.com:45329/hospitallosaples"; 
+	private static String MONGO__URI = "mongodb://localhost:27017"; 
 	private static String MONGO__DB = "hospitallosaples";
 	
 	
