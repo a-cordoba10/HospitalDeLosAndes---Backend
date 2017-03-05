@@ -221,12 +221,6 @@ public class PacienteDAO {
 		queryPaciente.field("id").equal(new ObjectId(idUsuario));
 		Paciente paciente = queryPaciente.get();
 		
-		if (medico==null) {
-			jsonMap.clear();
-			jsonMap.put("Error", " el medico  no existe");
-			String error = g.toJson(jsonMap);
-			return ResponseHospitalLosAlpes.buildResponse(error, Response.Status.NOT_FOUND);
-		}
 		if(paciente==null)
 		{
 			jsonMap.clear();
@@ -234,12 +228,7 @@ public class PacienteDAO {
 			String error = g.toJson(jsonMap);
 			return ResponseHospitalLosAlpes.buildResponse(error, Response.Status.NOT_FOUND);
 		}
-		if(!medico.getTipo().equals(TipoMedico.ESPECIALIZADO)){
-			jsonMap.clear();
-			jsonMap.put("Error", " el medico  no es especialista para poder realizar el cambio");
-			String error = g.toJson(jsonMap);
-			return ResponseHospitalLosAlpes.buildResponse(error, Response.Status.NOT_FOUND);
-		}
+		
 		else {
 			
 		paciente.setFecuenciaMarcapasos(medicion);
@@ -262,6 +251,7 @@ public class PacienteDAO {
 		} else {
 			paciente.setId(resultPaciente.getId());
 
+			
 			//continuar
 			datastore.save(paciente);
 			return ResponseHospitalLosAlpes.buildResponse(paciente, Response.Status.OK);
