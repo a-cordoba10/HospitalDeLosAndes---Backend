@@ -1,0 +1,451 @@
+[
+    {
+        "id": "9a4d1f5d.ecd7e",
+        "type": "inject",
+        "z": "72a05878.b34338",
+        "name": "sensorTime",
+        "topic": "roomTime",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "1",
+        "crontab": "",
+        "once": true,
+        "x": 184.2857208251953,
+        "y": 233.42857360839844,
+        "wires": [
+            [
+                "123c8e93.df1811",
+                "19c59f4e.af3791"
+            ]
+        ]
+    },
+    {
+        "id": "52310e13.7462c",
+        "type": "function",
+        "z": "72a05878.b34338",
+        "name": "formatTemp",
+        "func": "var res = {};\nvar tempArray = [];\n//var tempUnit = \"\";\n\ntempString = msg.payload;\n//tempArray = tempString.split(\"\\t\");\n//tempUnit = tempArray[1].replace(\"\\r\\n\", \"\");\nres.topic = \"roomTemperature\";\nres.payload = {};\n\nres.payload = {\"data\": tempString, \"unit\": \"C\", \"place\": \"Deposito Externo\"}\n\nreturn res;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 397.2857208251953,
+        "y": 112.42857360839844,
+        "wires": [
+            [
+                "620a8d28.25b1d4",
+                "68e0d87.2a06128"
+            ]
+        ]
+    },
+    {
+        "id": "19c59f4e.af3791",
+        "type": "debug",
+        "z": "72a05878.b34338",
+        "name": "time",
+        "active": false,
+        "console": "true",
+        "complete": "payload",
+        "x": 320.2857208251953,
+        "y": 295.42857360839844,
+        "wires": []
+    },
+    {
+        "id": "123c8e93.df1811",
+        "type": "function",
+        "z": "72a05878.b34338",
+        "name": "formatTime",
+        "func": "var res = {};\n\nres.payload = new Date(msg.payload);\nres.topic = msg.topic;\n\nreturn res;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 391.2857208251953,
+        "y": 223.42857360839844,
+        "wires": [
+            [
+                "a82da03e.f87b9",
+                "68e0d87.2a06128"
+            ]
+        ]
+    },
+    {
+        "id": "5c23faba.ab9cb4",
+        "type": "debug",
+        "z": "72a05878.b34338",
+        "name": "temp",
+        "active": false,
+        "console": "false",
+        "complete": "payload",
+        "x": 334.2857208251953,
+        "y": 164.42857360839844,
+        "wires": []
+    },
+    {
+        "id": "620a8d28.25b1d4",
+        "type": "debug",
+        "z": "72a05878.b34338",
+        "name": "tempFormat",
+        "active": false,
+        "console": "false",
+        "complete": "payload",
+        "x": 585.2857208251953,
+        "y": 71.42857360839844,
+        "wires": []
+    },
+    {
+        "id": "a82da03e.f87b9",
+        "type": "debug",
+        "z": "72a05878.b34338",
+        "name": "timeFormat",
+        "active": false,
+        "console": "false",
+        "complete": "payload",
+        "x": 580.2857208251953,
+        "y": 296.42857360839844,
+        "wires": []
+    },
+    {
+        "id": "68e0d87.2a06128",
+        "type": "function",
+        "z": "72a05878.b34338",
+        "name": "mergeMessages",
+        "func": "context.data = context.data || {};\n\nswitch (msg.topic) {\n    case \"roomTime\":\n        context.data.sensetime = msg.payload;\n        msg = null;\n        break;\n    case \"roomTemperature\":\n        context.data.temperature = msg.payload;\n        msg = null;\n        break;\n        \n    default:\n        msg = null;\n    \tbreak;\n}\n\nif(context.data.sensetime != null && context.data.temperature != null) {\n\tres = {};\n    res.payload = JSON.stringify(context.data);\n    res.topic = \"roomTemperature\"\n    context.data = null;\n\treturn res;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 589.2857208251953,
+        "y": 166.42857360839844,
+        "wires": [
+            [
+                "d39108f7.0725b8",
+                "c4da67f5.c23ab8"
+            ]
+        ]
+    },
+    {
+        "id": "d39108f7.0725b8",
+        "type": "debug",
+        "z": "72a05878.b34338",
+        "name": "mergedMessage",
+        "active": false,
+        "console": "false",
+        "complete": "payload",
+        "x": 787.2857208251953,
+        "y": 238.42857360839844,
+        "wires": []
+    },
+    {
+        "id": "c4da67f5.c23ab8",
+        "type": "udp out",
+        "z": "72a05878.b34338",
+        "name": "sendTemperature",
+        "addr": "localhost",
+        "iface": "",
+        "port": "6000",
+        "ipv": "udp4",
+        "outport": "",
+        "base64": false,
+        "multicast": "false",
+        "x": 818.2857208251953,
+        "y": 154.42857360839844,
+        "wires": []
+    },
+    {
+        "id": "a39f83c0.3d064",
+        "type": "inject",
+        "z": "72a05878.b34338",
+        "name": "Sensor",
+        "topic": "",
+        "payload": "20",
+        "payloadType": "num",
+        "repeat": "10",
+        "crontab": "",
+        "once": false,
+        "x": 150.00001525878906,
+        "y": 140.00000190734863,
+        "wires": [
+            [
+                "52310e13.7462c",
+                "5c23faba.ab9cb4"
+            ]
+        ]
+    },
+    {
+        "id": "7121c6c1.af0508",
+        "type": "udp in",
+        "z": "72a05878.b34338",
+        "name": "UDP incoming",
+        "iface": "",
+        "port": "6000",
+        "ipv": "udp4",
+        "multicast": "false",
+        "group": "",
+        "datatype": "utf8",
+        "x": 167.14285278320312,
+        "y": 412.8571472167969,
+        "wires": [
+            [
+                "7194181b.dd0b08",
+                "93f8ebde.5210d8"
+            ]
+        ]
+    },
+    {
+        "id": "d01d0028.f9e54",
+        "type": "function",
+        "z": "72a05878.b34338",
+        "name": "addTopic",
+        "func": "var res = {};\n\nres.payload = msg.payload;\nres.topic = \"roomTemperature\";\n\nreturn res;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 536.1428527832031,
+        "y": 393.8571472167969,
+        "wires": [
+            [
+                "809e14a0.b41fe8"
+            ]
+        ]
+    },
+    {
+        "id": "7194181b.dd0b08",
+        "type": "debug",
+        "z": "72a05878.b34338",
+        "name": "udpIncome",
+        "active": false,
+        "console": "false",
+        "complete": "payload",
+        "x": 271.1428527832031,
+        "y": 485.8571472167969,
+        "wires": []
+    },
+    {
+        "id": "93f8ebde.5210d8",
+        "type": "json",
+        "z": "72a05878.b34338",
+        "name": "",
+        "x": 334.1428527832031,
+        "y": 392.8571472167969,
+        "wires": [
+            [
+                "d01d0028.f9e54",
+                "e573d880.48efe8"
+            ]
+        ]
+    },
+    {
+        "id": "e573d880.48efe8",
+        "type": "debug",
+        "z": "72a05878.b34338",
+        "name": "Json",
+        "active": false,
+        "console": "false",
+        "complete": "payload",
+        "x": 444.1428527832031,
+        "y": 463.8571472167969,
+        "wires": []
+    },
+    {
+        "id": "809e14a0.b41fe8",
+        "type": "function",
+        "z": "72a05878.b34338",
+        "name": "Merge2msg",
+        "func": "context.data = context.data || {};\n\nswitch (msg.topic) {\n    case \"incomingTime\":\n        context.data.recvtime = msg.payload;\n        msg = null;\n        break;\n    case \"roomTemperature\":\n        context.data.room = msg.payload;\n        msg = null;\n        break;\n        \n    default:\n        msg = null;\n    \tbreak;\n}\n\nif(context.data.recvtime != null && context.data.room != null) {\n\tres = {};\n    res.payload = context.data;\n    res.topic = \"roomTemperature\"\n    context.data = null;\n\treturn res;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 705.1428527832031,
+        "y": 500.8571472167969,
+        "wires": [
+            [
+                "3d96d098.3e863",
+                "77dab654.002b28"
+            ]
+        ]
+    },
+    {
+        "id": "6f38aa55.ce1d94",
+        "type": "debug",
+        "z": "72a05878.b34338",
+        "name": "time",
+        "active": false,
+        "console": "true",
+        "complete": "payload",
+        "x": 377.1428527832031,
+        "y": 631.8571472167969,
+        "wires": []
+    },
+    {
+        "id": "cd21603.af437a",
+        "type": "function",
+        "z": "72a05878.b34338",
+        "name": "formatTime",
+        "func": "var res = {};\n\nres.payload = new Date(msg.payload);\nres.topic = msg.topic;\n\nreturn res;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 448.1428527832031,
+        "y": 559.8571472167969,
+        "wires": [
+            [
+                "965895ed.c807e8",
+                "809e14a0.b41fe8"
+            ]
+        ]
+    },
+    {
+        "id": "965895ed.c807e8",
+        "type": "debug",
+        "z": "72a05878.b34338",
+        "name": "timeFormat",
+        "active": false,
+        "console": "false",
+        "complete": "payload",
+        "x": 637.1428527832031,
+        "y": 632.8571472167969,
+        "wires": []
+    },
+    {
+        "id": "3d96d098.3e863",
+        "type": "debug",
+        "z": "72a05878.b34338",
+        "name": "",
+        "active": false,
+        "console": "false",
+        "complete": "false",
+        "x": 931.0317687988281,
+        "y": 493.0793571472168,
+        "wires": []
+    },
+    {
+        "id": "77dab654.002b28",
+        "type": "link out",
+        "z": "72a05878.b34338",
+        "name": "otro",
+        "links": [
+            "4374f2cb.8bff8c"
+        ],
+        "x": 857.1428527832031,
+        "y": 562.8571472167969,
+        "wires": []
+    },
+    {
+        "id": "d7fe3a38.36aa48",
+        "type": "inject",
+        "z": "72a05878.b34338",
+        "name": "incoming Time",
+        "topic": "incomingTime",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "1",
+        "crontab": "",
+        "once": true,
+        "x": 207.14285278320312,
+        "y": 594.8571472167969,
+        "wires": [
+            [
+                "cd21603.af437a",
+                "6f38aa55.ce1d94"
+            ]
+        ]
+    },
+    {
+        "id": "a3a94035.b27a2",
+        "type": "http in",
+        "z": "72a05878.b34338",
+        "name": "post notification",
+        "url": "localhost:8080/notificaciones",
+        "method": "post",
+        "swaggerDoc": "",
+        "x": 252.92066955566406,
+        "y": 861.6667261123657,
+        "wires": [
+            [
+                "af09d1e9.f228c"
+            ]
+        ]
+    },
+    {
+        "id": "af09d1e9.f228c",
+        "type": "function",
+        "z": "72a05878.b34338",
+        "name": "Content Type",
+        "func": "\nvar res = {};\n\ntempString = msg.payload;\nres.topic = msg.payload.room.temperature.data;\nres.payload = {};\nres.headers = {\"Content-Type\":\"application/json\"};\nres.payload = {\"idEvento\":3,\n  \"idPaciente\":4,\n  \"mensaje\":msg.payload.room.temperature.data,\n  \"tipo\":\"PRESION\"}\n\nreturn res;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 607.9999465942383,
+        "y": 852.3016052246094,
+        "wires": [
+            [
+                "5d54e7c8.ee5d28"
+            ]
+        ]
+    },
+    {
+        "id": "4374f2cb.8bff8c",
+        "type": "link in",
+        "z": "72a05878.b34338",
+        "name": "",
+        "links": [
+            "77dab654.002b28"
+        ],
+        "x": 382.8571434020996,
+        "y": 770.0000305175781,
+        "wires": [
+            [
+                "af09d1e9.f228c"
+            ]
+        ]
+    },
+    {
+        "id": "a22fb02a.876f2",
+        "type": "debug",
+        "z": "72a05878.b34338",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 902.8571428571428,
+        "y": 714.2857142857142,
+        "wires": []
+    },
+    {
+        "id": "79729be0.cf7614",
+        "type": "inject",
+        "z": "72a05878.b34338",
+        "name": "Sensor",
+        "topic": "",
+        "payload": "15",
+        "payloadType": "num",
+        "repeat": "15",
+        "crontab": "",
+        "once": false,
+        "x": 141.42857360839844,
+        "y": 34.28571319580078,
+        "wires": [
+            [
+                "52310e13.7462c"
+            ]
+        ]
+    },
+    {
+        "id": "5d54e7c8.ee5d28",
+        "type": "http request",
+        "z": "72a05878.b34338",
+        "name": "send post",
+        "method": "POST",
+        "ret": "txt",
+        "url": "localhost:8080/notificaciones",
+        "tls": "",
+        "x": 802.8571624755859,
+        "y": 851.4285984039307,
+        "wires": [
+            [
+                "44ccc5ed.4c49ec",
+                "a22fb02a.876f2"
+            ]
+        ]
+    },
+    {
+        "id": "44ccc5ed.4c49ec",
+        "type": "http response",
+        "z": "72a05878.b34338",
+        "name": "do post",
+        "x": 1064.190544128418,
+        "y": 800.7143249511719,
+        "wires": []
+    }
+]
