@@ -62,7 +62,8 @@ public class PacienteDAO {
 		
 		Datastore datastore = HospitalLosAlpesDB.getDatastore();
 		final Query<Paciente> queryPaciente = datastore.createQuery(Paciente.class);
-		queryPaciente.field("id").equal(new ObjectId(idUsuario));
+		ObjectId objectId = new ObjectId(idUsuario);
+		queryPaciente.field("id").equal(objectId);
 		Paciente paciente = queryPaciente.get();
 		
 		if (paciente  == null) {
