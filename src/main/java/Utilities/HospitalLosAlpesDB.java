@@ -10,11 +10,9 @@ import com.mongodb.MongoClientURI;
 
 public class HospitalLosAlpesDB {
 	
-<<<<<<< HEAD
+
 	private static String MONGO_URI = "mongodb://172.24.42.72:27017"; 
-=======
-	private static String MONGO_URI = "mongodb://172.24.42.74:27017"; 
->>>>>>> b386bfc6601c0ef3fb2165130e99a654bdcd9f6a
+
 	private static String MONGO__DB = "hospitallosaples";
 	
 	
