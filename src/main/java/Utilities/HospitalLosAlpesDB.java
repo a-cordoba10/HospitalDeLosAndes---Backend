@@ -11,7 +11,7 @@ import com.mongodb.MongoClientURI;
 public class HospitalLosAlpesDB {
 	
 
-	private static String MONGO_URI = "mongodb://172.24.42.72:27017"; 
+	private static String MONGO_URI = "mongodb://localhost:27017"; 
 
 	private static String MONGO__DB = "hospitallosaples";
 	

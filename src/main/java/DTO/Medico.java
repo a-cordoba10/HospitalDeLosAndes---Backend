@@ -34,6 +34,8 @@ public class Medico {
 	private int telefono;
 	private int docIdentidad;
 	private TipoMedico tipo;
+	private String usuario;
+	private String contrasenia;
 	
 	public Medico(){
 		
@@ -42,7 +44,8 @@ public class Medico {
 	
 
 	public Medico(ObjectId id, String nombre, String nivel, ArrayList<String> idPacientes,
-			int edad, Date fechaNacimiento, String direccion, int telefono, int docIdentidad,TipoMedico tipo) {
+			int edad, Date fechaNacimiento, String direccion, int telefono, int docIdentidad,TipoMedico tipo,
+			String usuario, String contrasenia) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -54,6 +57,16 @@ public class Medico {
 		this.telefono = telefono;
 		this.docIdentidad = docIdentidad;
 		this.tipo=tipo;
+		this.usuario= usuario;
+		this.contrasenia=contrasenia;
+	}
+	
+	public boolean validarLogin (String usr, String pssw)
+	{
+		if (usr.equals(usuario)&& pssw.equals(contrasenia)){
+			return true;
+		}
+		return false;
 	}
 
 
@@ -176,6 +189,12 @@ public class Medico {
 	public void setId(ObjectId id) {
 		this.id = id;
 	}
+        
+        public void addPaciente (String idPaciente){
+            
+            idPacientes.add(idPaciente);
+            
+        }
 	
 	
 	

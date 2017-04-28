@@ -62,8 +62,7 @@ public class PacienteDAO {
 		
 		Datastore datastore = HospitalLosAlpesDB.getDatastore();
 		final Query<Paciente> queryPaciente = datastore.createQuery(Paciente.class);
-		ObjectId objectId = new ObjectId(idUsuario);
-		queryPaciente.field("id").equal(objectId);
+		queryPaciente.field("id").equal(new ObjectId(idUsuario));
 		Paciente paciente = queryPaciente.get();
 		
 		if (paciente  == null) {
@@ -133,11 +132,20 @@ public class PacienteDAO {
 	public static Response addPaciente(Paciente paciente) {
 
 		Datastore datastore = HospitalLosAlpesDB.getDatastore();
+                if(pacienteExiste(paciente)){
+                    return ResponseHospitalLosAlpes.buildResponse("paciente con ID "+paciente.getDocIdentidad()+" ya existe", Response.Status.NOT_FOUND);
+                }
 		datastore.save(paciente);
 		return getAllPacientes();
-
-
 	}
+        
+        public static boolean pacienteExiste (Paciente p){
+            int id = p.getDocIdentidad();
+            Datastore datastore = HospitalLosAlpesDB.getDatastore();
+            List<Paciente> pacientes =datastore.createQuery(Paciente.class).filter("docIdentidad =", id).asList();
+            
+            return !pacientes.isEmpty();
+        }
 
 
 	public static Response addEvento(String idUsuario, Evento evento) {

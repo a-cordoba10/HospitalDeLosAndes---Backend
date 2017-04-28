@@ -119,5 +119,6 @@ public class PacienteRecursos {
 	public Response editPaciente(@PathParam("idUsuario") String idUsuario, Paciente paciente) {
 		return PacienteDAO.editPaciente(idUsuario,paciente);
 	}
+        
 
 }
