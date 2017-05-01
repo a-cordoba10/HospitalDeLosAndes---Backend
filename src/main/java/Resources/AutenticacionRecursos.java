@@ -6,7 +6,9 @@
 package Resources;
 
 import DAO.MedicoDAO;
+import DAO.PacienteDAO;
 import DTO.Medico;
+import DTO.Paciente;
 import DTO.Wrapper;
 import Utilities.ResponseHospitalLosAlpes;
 import javax.ws.rs.GET;
@@ -31,7 +33,17 @@ public class AutenticacionRecursos {
             Medico buscado = MedicoDAO.getMedicoPorUsr(usr);
             if (buscado==null)
             {
-                Wrapper respuesta = new Wrapper("no exitoso", "no existe usuario");
+                Paciente pBuscado = PacienteDAO.getPacientePorUsr(usr);
+                if (pBuscado == null){
+                    Wrapper respuesta = new Wrapper("no exitoso", "no existe usuario");
+                    return ResponseHospitalLosAlpes.buildResponse(respuesta, Response.Status.OK);
+                }
+                if (!pBuscado.validarLogin(usr, pssw)){
+                    Wrapper respuesta = new Wrapper("no exitoso", "password incorrecto");
+                    return ResponseHospitalLosAlpes.buildResponse(respuesta, Response.Status.OK);
+                }
+                Wrapper respuesta = new Wrapper("exitoso", "paciente");
+                respuesta.setUsuario(pBuscado);
                 return ResponseHospitalLosAlpes.buildResponse(respuesta, Response.Status.OK);
             }
             if (!buscado.validarLogin(usr, pssw)){
