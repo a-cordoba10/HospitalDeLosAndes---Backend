@@ -56,6 +56,17 @@ public class PacienteDAO {
 			return ResponseHospitalLosAlpes.buildResponse(paciente, Response.Status.OK);
 		}
 	}
+        
+        public static Paciente getPacientePorUsr(String usr) {		
+		Datastore datastore = HospitalLosAlpesDB.getDatastore();
+		List<Paciente> pacientes = datastore.createQuery(Paciente.class).filter("usuario =", usr)
+				.asList();
+		if (pacientes.isEmpty()) {
+			return null;
+		} else {
+			return pacientes.get(0);
+		}
+	}
 
 
 	public static Response getHistoriaClinica(String idUsuario) {

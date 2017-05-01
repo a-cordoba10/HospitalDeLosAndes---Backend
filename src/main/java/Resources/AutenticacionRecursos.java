@@ -38,9 +38,10 @@ public class AutenticacionRecursos {
                 Wrapper respuesta = new Wrapper("no exitoso", "password incorrecto");
                 return ResponseHospitalLosAlpes.buildResponse(respuesta, Response.Status.OK);
             }
-            Wrapper respuesta = new Wrapper("exitoso", "Medico");
-            respuesta.setMedico(buscado);
+            Wrapper respuesta = new Wrapper("exitoso", "doctor");
+            respuesta.setUsuario(buscado);
             return ResponseHospitalLosAlpes.buildResponse(respuesta, Response.Status.OK);
     }
+    
     
 }

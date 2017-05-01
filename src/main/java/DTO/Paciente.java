@@ -14,7 +14,7 @@ import org.mongodb.morphia.annotations.Id;
 @Entity("Paciente")
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Paciente {
+public class Paciente implements Iusuario{
 	
 	@Id
 	@XmlElement(name = "id")
@@ -33,6 +33,8 @@ public class Paciente {
 	private ArrayList<Consejo> consejos;
 	private ArrayList<Evento> eventos;
 	private double fecuenciaMarcapasos;
+	private String usuario;
+	private String contrasenia;
 	
 	public Paciente(){
 		
@@ -43,7 +45,8 @@ public class Paciente {
 	public Paciente(ObjectId id, String identificador, String nombre, int edad, Date fechaNacimiento, String direccion,
 			int telefono, int docIdentidad, double montoPago, Date fechaPago, String idDispositivo,
 			ArrayList<Reporte> historiaClinica, ArrayList<Consejo> consejos, ArrayList<Evento> eventos,
-			double fecuenciaMarcapasos) {
+			double fecuenciaMarcapasos,
+			String usuario, String contrasenia) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -59,9 +62,18 @@ public class Paciente {
 		this.consejos = consejos;
 		this.eventos = eventos;
 		this.fecuenciaMarcapasos = fecuenciaMarcapasos;
+		this.usuario= usuario;
+		this.contrasenia=contrasenia;
 	}
 
 
+        public boolean validarLogin (String usr, String pssw)
+	{
+		if (usr.equals(usuario)&& pssw.equals(contrasenia)){
+			return true;
+		}
+		return false;
+	}
 
 	public String getNombre() {
 		return nombre;

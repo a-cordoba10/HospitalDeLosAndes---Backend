@@ -58,6 +58,21 @@ public class MedicoDAO {
 			return medicos.get(0);
 		}
 	}
+        
+        public static Response getMedico (String usr) {		
+		Datastore datastore = HospitalLosAlpesDB.getDatastore();
+		final Query<Medico> queryMedico = datastore.createQuery(Medico.class);
+		queryMedico.field("id").equal(new ObjectId(usr));
+		Medico medico = queryMedico.get();
+		if (medico  == null) {
+			jsonMap.clear();
+			jsonMap.put("Error", "medico not found");
+			String error = g.toJson(jsonMap);
+			return ResponseHospitalLosAlpes.buildResponse(error, Response.Status.NOT_FOUND);
+		} else {
+			return ResponseHospitalLosAlpes.buildResponse(medico, Response.Status.OK);
+		}
+	}
 
     public static Response addPaciente(String idUsuario, String idMedico) {
         

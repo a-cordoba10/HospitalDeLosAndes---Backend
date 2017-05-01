@@ -28,11 +28,11 @@ public class Wrapper {
     @Id
     @XmlElement(name = "id")
     private ObjectId id;
-
     private String estado;
     private String elemento;
-    private Medico medico;
-    private Paciente paciente;
+    private Iusuario usuario;
+
+
 
     public Wrapper(String estado, String elemento) {
         this.estado = estado;
@@ -46,23 +46,7 @@ public class Wrapper {
     public ObjectId getId() {
         return id;
     }
-
-    public void setMedico(Medico medico) {
-        this.medico = medico;
-    }
-
-    public void setPaciente(Paciente paciente) {
-        this.paciente = paciente;
-    }
-
-    public Medico getMedico() {
-        return medico;
-    }
-
-    public Paciente getPaciente() {
-        return paciente;
-    }
-
+    
     public String getEstado() {
         return estado;
     }
@@ -78,12 +62,12 @@ public class Wrapper {
     public void setElemento(String elemento) {
         this.elemento = elemento;
     }
-
-    public Medico getValue() {
-        return medico;
+    
+    public void setUsuario(Iusuario usuario) {
+        this.usuario = usuario;
     }
-
-    public void setValue(Medico medico) {
-        this.medico = medico;
+    
+    public Iusuario getUsuario() {
+        return usuario;
     }
 }

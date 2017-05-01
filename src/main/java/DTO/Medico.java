@@ -15,7 +15,7 @@ import org.mongodb.morphia.annotations.Id;
 @Entity("Medico")
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Medico {
+public class Medico implements Iusuario{
 	
 	@Id
 	@XmlElement(name = "id")
@@ -40,8 +40,6 @@ public class Medico {
 	public Medico(){
 		
 	}
-	
-	
 
 	public Medico(ObjectId id, String nombre, String nivel, ArrayList<String> idPacientes,
 			int edad, Date fechaNacimiento, String direccion, int telefono, int docIdentidad,TipoMedico tipo,

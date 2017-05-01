@@ -35,6 +35,12 @@ public class MedicoRecursos {
 		return MedicoDAO.addPaciente(idUsuario,idMedico);
 	}
         
-        
+  
+        @GET
+	@Path("{idUsuario}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getMedico(@PathParam("idUsuario") String idUsuario) {
+		return MedicoDAO.getMedico(idUsuario);
+	}
 
 }
