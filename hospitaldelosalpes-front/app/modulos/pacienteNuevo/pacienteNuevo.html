@@ -1,0 +1,50 @@
+<div >
+       <h2 style="margin-bottom:50px;">Agrega un nuevo Paciente</h2>
+    <form name="pacienteForm">
+        
+        <div class="formSpace">
+            <label  for="actividadEconomica">Nombre:</label>
+            <div class="lI"><input type="text" class="input form-control" name="actividadEconomica" ng-model="newPaciente.nombre" required></div>
+        </div>
+        <div class="formSpace">
+            <label class="lT" for="ciudad">Edad:</label>
+            <div class="lI"><input type="number" class="input form-control" name="ciudad" ng-model="newPaciente.edad" required></div>
+        </div>
+        <div class="formSpace">
+            <label class="lT" for="codigoPostal">Direccion:</label>
+            <div class="lI"><input type="text" class="input form-control" name="codigoPostal" ng-model="newPaciente.direccion" required></div>
+        </div>
+        <div class="formSpace">
+            <label class="lT" for="contactoAsociado">Telefono:</label>
+            <div class="lI"><input type="number" class="input form-control" name="contactoAsociado" ng-model="newPaciente.telefono" required></div>
+        </div>
+       <div class="formSpace">
+            <label class="lT" for="correo">No Documento: </label>
+            <div class="lI"> <input type="number" class="input form-control" name="correo" ng-model="newPaciente.docIdentidad" required></div>
+        </div>
+        <div class="formSpace">
+            <label class="lT" for="correo">Monto pago: </label>
+            <div class="lI"> <input type="number" class="input form-control" name="correo" ng-model="newPaciente.montoPago" required></div>
+        </div>
+        <div class="formSpace">
+            <label class="lT" for="direccionSedePrincipal">Id dispositivo:</label>
+            <div class="lI"><input type="text" class="input form-control" name="direccionSedePrincipal" ng-model="newPaciente.idDispositivo" required></div>
+        </div>
+        <div class="formSpace">
+            <label class="lT" for="estadoOProvincia">Frecuencia marcapasos:</label>
+            <div class="lI"> <input type="number" class="input form-control" name="estadoOProvincia" ng-model="newPaciente.frecuenciaMarcapasos" required></div>
+        </div>
+        <div class="formSpace">
+            <label class="lT" for="nit">Usuario:</label>
+            <div class="lI"><input type="text" class="input form-control" name="nit" ng-model="newPaciente.usuario" required></div>
+        </div>
+        <div class="formSpace">
+            <label class="lT" for="nombre">Contraseña:</label>
+            <div class="lI"> <input type="text" class="input form-control" name="nombre" ng-model="newPaciente.contrasena" required></div>
+        </div>
+        
+
+        <button type="submit"  ng-click=" pacienteForm.$valid && addPaciente()"><div class="txtBtn">AGREGAR PACIENTE</div></button>
+       
+    </form>
+</div>

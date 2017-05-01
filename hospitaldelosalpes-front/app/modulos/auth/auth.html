@@ -1,0 +1,14 @@
+<div ><div style="font-size: 1.4em">Bienvenido a Hospital los alpes</div>
+    <form name="loginForm" autocomplete="off">
+        <div >
+            <label style="display: none" for="">Correo</label>
+            <input placeholder="Usuario" type="text" class="form-control" ng-class="{'form-control-danger':emailError}" id="usuario" name="usuario" ng-model="usuario" focus-if="emailError" required>
+        </div>
+        <div>
+            <label style="display: none"  for="">Contraseña</label>
+            <input placeholder="Contraseña" type="password" class="form-control" ng-class="{'form-control-danger':emailError}" id="clave" name="clave" ng-model="password" focus-if="passError" required>
+        </div>
+        <div>{{msj}}</div>
+        <button type="submit" class="btnSend" ng-click="loginForm.$valid && login()">Iniciar Sesi&oacute;n</button> 
+    </form>
+</div>

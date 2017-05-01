@@ -1,0 +1,29 @@
+
+
+<div>Los pacientes son :</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Edad</th>
+      <th>Documento</th>
+      <th>Frecuencia Mp</th>
+    </tr>
+  </thead>
+  <tbody>
+   
+   <tr ng-click="irPaciente(paciente)" ng-repeat="paciente in pacientes">
+        
+        <td>{{paciente.nombre}}</td>
+        
+        <td>{{paciente.edad}}</td>
+        
+        <td>{{paciente.docIdentidad}}</td>
+        
+        <td>{{paciente.fecuenciaMarcapasos}}</td>
+        
+    </tr>
+    
+  </tbody>
+</table>
