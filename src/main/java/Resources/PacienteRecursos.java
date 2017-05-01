@@ -29,7 +29,6 @@ public class PacienteRecursos {
 	@PermitAll
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getAllPacientes() {
-		
 		return PacienteDAO.getAllPacientes();
 	}
 
@@ -113,7 +112,7 @@ public class PacienteRecursos {
 	// ------------------------------------UPDATE----------------------------------------------------//
 
 	@PUT
-	@Path("{idUsuario}/")
+	@Path("{idUsuario}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response editPaciente(@PathParam("idUsuario") String idUsuario, Paciente paciente) {

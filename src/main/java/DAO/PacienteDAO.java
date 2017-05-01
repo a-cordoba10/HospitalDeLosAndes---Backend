@@ -262,10 +262,11 @@ public class PacienteDAO {
 	public static Response editPaciente(String idUsuario, Paciente paciente) {
 
 		Datastore datastore = HospitalLosAlpesDB.getDatastore();
-		Paciente resultPaciente = datastore.get(Paciente.class,paciente.getId());
+                ObjectId objectId = new ObjectId(idUsuario);
+		Paciente resultPaciente = datastore.get(Paciente.class,objectId);
 		if (resultPaciente == null) {
 			jsonMap.clear();
-			jsonMap.put("Error", "Paciente not found");
+			jsonMap.put("Error", idUsuario);
 			String error = g.toJson(jsonMap);
 			return ResponseHospitalLosAlpes.buildResponse(error, Response.Status.NOT_FOUND);
 		} else {
