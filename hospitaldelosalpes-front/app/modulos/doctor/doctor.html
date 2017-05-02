@@ -1,13 +1,21 @@
-<div>{{user}}</div>
+
+<div class="line "><img src="modulos/assets/titulo.png" alt=""></div>
+<div class="col-sm-12">
+<div class="col-sm-12 text-center clsee" >   </div>
     
-        
+   
+<div class=" text-center col-sm-6"> <h1>Doctor:  {{user}}</h1> </div>          
+<div class="col-sm-6">
+    <button type="submit" class="btnVC" ng-click="verPacientes()"><h3 style="color:white">Ver Pacientes</h3></button>
+
+    <button type="submit" class="btnVC" ng-click="agregarPaciente()"><h3 style="color:white">Agregar Paciente</h3></button>
+
+</div>
+
+</div> 
            
-                <button ng-click="verPacientes()" class="btnAdd">
-                    <div class="txtBtn">Ver Pacientes</div>
-                </button>
+          
+<link rel="stylesheet" href="/modulos/paciente/paciente.css">      
            
             
-                <button ng-click="agregarPaciente()" class="btnAdd btnBlue">
-                    <div class="txtBtn">Agregar Paciente </div>
-                </button>
            

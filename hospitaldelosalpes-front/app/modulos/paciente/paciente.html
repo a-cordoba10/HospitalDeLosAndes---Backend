@@ -1,35 +1,58 @@
-<div class="col-sm-6">
-    <div class="txtBtn">nombre:
-        <div class="txtBtn">{{paciente.nombre}}</div>
+<div class="line "><img src="modulos/assets/titulo.png" alt=""></div>
+<div class="col-sm-12">
+<div class="col-sm-6 paddind">
+   
+    <div class="pad col-sm-12">
+       <div class="col-sm-6"> <h3 style="color:rgb(167,196,254);">Nombre:</h3></div>
+        <div class="col-sm-6" > <h5 style="color:rgb(28, 123, 251);" > {{paciente.nombre}}</h5></div>
+    </div>
+    <div class="pad col-sm-12">
+       <div class="col-sm-6"> <h3 style="color:rgb(167,196,254);">Edad:</h3></div>
+        <div class="col-sm-6" > <h5 style="color:rgb(28, 123, 251);" > {{paciente.edad}}</h5></div>
+    </div>
+    <div class="pad col-sm-12">
+       <div class="col-sm-6"> <h3 style="color:rgb(167,196,254);">Documento:</h3></div>
+        <div class="col-sm-6" > <h5 style="color:rgb(28, 123, 251);" > {{paciente.docIdentidad}}</h5></div>
+    </div>
+    <div class="pad col-sm-12">
+       <div class="col-sm-6"> <h3 style="color:rgb(167,196,254);">Teléfono:</h3></div>
+        <div class="col-sm-6" > <h5 style="color:rgb(28, 123, 251);" > {{paciente.telefono}}</h5></div>
+    </div>
+    <div class="pad col-sm-12">
+       <div class="col-sm-6"> <h3 style="color:rgb(167,196,254);">Dirección::</h3></div>
+        <div class="col-sm-6" > <h5 style="color:rgb(28, 123, 251);" > {{paciente.direccion}}</h5></div>
+    </div>
+    <div class="pad col-sm-12">
+       <div class="col-sm-6"> <h3 style="color:rgb(167,196,254);">Frecuencia marcapasos:</h3></div>
+        <div class="col-sm-6" > <h5 style="color:rgb(28, 123, 251);" > {{paciente.fecuenciaMarcapasos}}</h5></div>
     </div>
 
-    <div class="txtBtn">Edad:
-        <div class="txtBtn">{{paciente.edad}}</div>
-    </div>
-
-    <div class="txtBtn">Documento:
-        <div class="txtBtn">{{paciente.docIdentidad}}</div>
-    </div>
-
-    <div class="txtBtn">teléfono:
-        <div class="txtBtn">{{paciente.telefono}}</div>
-    </div>
-
-    <div class="txtBtn">Dirección:
-        <div class="txtBtn">{{paciente.direccion}}</div>
-    </div>
-
-    <div class="txtBtn">Frecuencia Marcapasos:
-        <div class="txtBtn">{{paciente.fecuenciaMarcapasos}}</div>
-    </div>
+    
 
 </div>
 
 
-<div class="col-sm-6">
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".fade">Cambiar frecuencia marcapasos</button>
 
 
+
+<div class="col-sm-3 paddind">
+    <button type="submit" class="btnVC" data-toggle="modal" data-target=".fade"><h3 style="color:white">Cambiar Frecuencia Marcapasos</h3></button>
+
+    <button type="submit" class="btnVC" data-toggle="modal" data-target=".fadehistoria"><h3 style="color:white">Ver Historia Clinica</h3></button>
+
+    <button type="submit" class="btnVC" data-toggle="modal" data-target=".fademedicion"><h3 style="color:white">Ver Mediciones</h3></button>
+
+   
+</div>
+<div class="col-sm-3 paddind">
+
+    <button type="submit" class="btnVC"  data-toggle="modal" data-target=".faderepo"><h3 style="color:white">Agregar Reporte</h3></button>
+    
+    <button type="submit" class="btnVC" data-toggle="modal" data-target=".fadeConsejo"><h3 style="color:white">Agregar Consejo</h3></button>
+</div>
+   
+  
+   
 
     <div class="modal fade" id="marcapasosFrecuencia">
         <div class="modal-dialog" role="document">
@@ -56,7 +79,7 @@
         </div>
     </div>
 
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".fadehistoria">Ver Historia Clinica</button>
+   
 
 
 
@@ -94,7 +117,6 @@
             </div>
         </div>
     </div>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".fademedicion">Ver Mediciones</button>
 
 
 
@@ -131,7 +153,8 @@
             </div>
         </div>
     </div>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".faderepo">Agregar Reporte</button>
+    
+    
 
 
 
@@ -160,5 +183,39 @@
             </div>
         </div>
     </div>
+    
 
-</div>
+
+
+    <div class="modal fadeConsejo" id="nuevoReporte">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Nuevo Consejo</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+                </div>
+                <div class="modal-body">
+                    <label for="tipo" class="lT">Tipo:</label>
+                    <select name="clasificacion" id="clasificacion" class="custom-select form-control" ng-model="tipoConsejo" ng-options="con.ti for con in consejosTipos" required></select>
+                    <label for="frec">Descripcion:</label>
+                    <input type="text" class="input form-control" name="modelo" ng-model="descripcionConsejo" required>
+                    <div ng-show="show">
+                        {{msj3}}
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" ng-click="agregarConsejo()">Guardar </button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" ng-click="setFalse()">cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div> 
+
+<link rel="stylesheet" href="/modulos/paciente/paciente.css">
+
+
+

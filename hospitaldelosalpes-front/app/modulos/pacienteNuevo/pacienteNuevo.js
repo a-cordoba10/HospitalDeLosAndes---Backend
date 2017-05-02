@@ -35,7 +35,7 @@ angular.module('myApp.pacienteNuevo', ['ngRoute'])
             consejos:[],
             eventos:[],
             usuario:$scope.newPaciente.usuario,
-            contrasenia:$scope.newPaciente.contrasenia
+            contrasenia:$scope.newPaciente.contrasena
         }
         
         console.log(paciente);

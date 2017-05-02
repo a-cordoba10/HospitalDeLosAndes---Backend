@@ -1,0 +1,38 @@
+.fS {
+    margin: 5vh auto 30px auto;
+    text-align: center;
+}
+
+.btnVC {
+    width: 250px;
+    background-color: rgb(28, 123, 251);
+    height: 150px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 0px 20px 0px rgba(233, 239, 249, 0.8);
+    margin: 0 20px 20px 0;
+}
+
+.btnVC:hover {
+    background-color: #151e48;
+    color: #FFFFFF;
+}
+
+.pad{
+    padding-bottom: 15px;
+    padding-top: 15px;
+    padding-left: 20px;
+}
+.border {
+    padding-top: 10px;
+}
+
+.paddind {
+    padding-top: 20px;
+}
+
+.clsee {
+    width: 100%;
+    background-color: white;
+    height: 40px;
+}

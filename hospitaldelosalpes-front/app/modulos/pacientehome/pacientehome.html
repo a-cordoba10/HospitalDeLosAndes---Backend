@@ -1,0 +1,163 @@
+ <div class="line "><img src="modulos/assets/titulo.png" alt=""></div>
+<div class="col-sm-12">
+<div class="col-sm-6 paddind">
+   
+    <div class="pad col-sm-12">
+       <div class="col-sm-6"> <h3 style="color:rgb(167,196,254);">Nombre:</h3></div>
+        <div class="col-sm-6" > <h5 style="color:rgb(28, 123, 251);" > {{paciente.nombre}}</h5></div>
+    </div>
+    <div class="pad col-sm-12">
+       <div class="col-sm-6"> <h3 style="color:rgb(167,196,254);">Edad:</h3></div>
+        <div class="col-sm-6" > <h5 style="color:rgb(28, 123, 251);" > {{paciente.edad}}</h5></div>
+    </div>
+    <div class="pad col-sm-12">
+       <div class="col-sm-6"> <h3 style="color:rgb(167,196,254);">Documento:</h3></div>
+        <div class="col-sm-6" > <h5 style="color:rgb(28, 123, 251);" > {{paciente.docIdentidad}}</h5></div>
+    </div>
+    <div class="pad col-sm-12">
+       <div class="col-sm-6"> <h3 style="color:rgb(167,196,254);">Teléfono:</h3></div>
+        <div class="col-sm-6" > <h5 style="color:rgb(28, 123, 251);" > {{paciente.telefono}}</h5></div>
+    </div>
+    <div class="pad col-sm-12">
+       <div class="col-sm-6"> <h3 style="color:rgb(167,196,254);">Dirección::</h3></div>
+        <div class="col-sm-6" > <h5 style="color:rgb(28, 123, 251);" > {{paciente.direccion}}</h5></div>
+    </div>
+    <div class="pad col-sm-12">
+       <div class="col-sm-6"> <h3 style="color:rgb(167,196,254);">Frecuencia marcapasos:</h3></div>
+        <div class="col-sm-6" > <h5 style="color:rgb(28, 123, 251);" > {{paciente.fecuenciaMarcapasos}}</h5></div>
+    </div>
+
+    
+
+</div>
+
+
+
+
+
+<div class="col-sm-6 paddind">
+  
+
+    <button type="submit" class="btnVC" data-toggle="modal" data-target=".fadehistoria"><h3 style="color:white">Ver Historia Clinica</h3></button>
+
+    <button type="submit" class="btnVC" data-toggle="modal" data-target=".fademedicion"><h3 style="color:white">Ver Mediciones</h3></button>
+     <button type="submit" class="btnVC" data-toggle="modal" data-target=".fadeconsejos"><h3 style="color:white">Ver Consejos</h3>
+     </button>
+
+   
+</div>
+  
+
+    <div class="modal fadehistoria">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Historia Clinica</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID doctor</th>
+                                <th>Tipo</th>
+                                <th>Descripcion</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in paciente.historiaClinica">
+                                <td>{{item.idDoctor}}</td>
+                                <td>{{item.tipo}}</td>
+                                <td>{{item.descripcion}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">Guardar </button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+
+
+    <div class="modal fademedicion">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Mediciones</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+                </div>
+                <div class="modal-body">
+
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Medicion</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="evento in paciente.eventos">
+                                <td>{{ evento.$index+1 }}</td>
+                                <td>{{evento.medicion}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">Guardar </button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal fadeconsejos">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Consejos</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID doctor</th>
+                                <th>Tipo</th>
+                                <th>Descripcion</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="consejo in paciente.consejos">
+                                <td>{{consejo.idDoctor}}</td>
+                                <td>{{consejo.tipo}}</td>
+                                <td>{{consejo.descripcion}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">Guardar </button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+
+<link rel="stylesheet" href="/modulos/paciente/paciente.css">

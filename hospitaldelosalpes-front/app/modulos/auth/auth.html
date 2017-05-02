@@ -1,14 +1,17 @@
-<div ><div style="font-size: 1.4em">Bienvenido a Hospital los alpes</div>
+
+<div id="boxAuth" class="loginBox"  cg-busy="{promise:loginPromise,message:'Iniciando Sesión',minDuration:1000}"><div style="font-size: 1.4em">Bienvenido a a Hospital los alpes</div>
     <form name="loginForm" autocomplete="off">
-        <div >
-            <label style="display: none" for="">Correo</label>
+        <div class="loginContent" ng-class="{'has-danger':emailError}">
+            <label style="display: none" for="">Usuario</label>
             <input placeholder="Usuario" type="text" class="form-control" ng-class="{'form-control-danger':emailError}" id="usuario" name="usuario" ng-model="usuario" focus-if="emailError" required>
+            <div class="form-control-feedback" ng-if="emailError">{{loginError}}</div>
         </div>
-        <div>
+        <div class="loginContent" ng-class="{'has-danger':passError}">
             <label style="display: none"  for="">Contraseña</label>
             <input placeholder="Contraseña" type="password" class="form-control" ng-class="{'form-control-danger':emailError}" id="clave" name="clave" ng-model="password" focus-if="passError" required>
+            <div class="form-control-feedback" ng-if="passError">{{loginError}}</div>
         </div>
-        <div>{{msj}}</div>
         <button type="submit" class="btnSend" ng-click="loginForm.$valid && login()">Iniciar Sesi&oacute;n</button> 
     </form>
 </div>
+<link rel="stylesheet" href="/modulos/auth/auth.css">

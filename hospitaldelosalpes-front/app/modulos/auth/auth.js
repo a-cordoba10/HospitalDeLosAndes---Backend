@@ -37,7 +37,8 @@ angular.module('myApp.auth', ['ngRoute'])
                         if (userInfo.elemento == 'doctor') {
                             $location.path("/doctor")
                         } else {
-                            $location.path("/paciente");
+                            $localStorage.userInfo.usuario=$scope.usuario;
+                            $location.path("/pacientehome");
                         }
                     }
                     if (userInfo.elemento == 'no existe usuario') {
@@ -52,7 +53,7 @@ angular.module('myApp.auth', ['ngRoute'])
 
                 },
                 function errorCallback(response) {
-                    $scope.loginForm.password = "";
+                   
                     console.log("LOGIN: " + JSON.stringify(response.data));
                     $scope.msj = "Incorrect username or password.";
                 }).finally(function () {

@@ -1,0 +1,101 @@
+.loginBox {
+    box-shadow: 0px 0px 20px 0px rgba(255, 120, 80, 0.5);
+}
+
+.registerBox {
+    margin-top: 10vh;
+    margin-bottom: 10vh;
+}
+
+body {
+    background-image: -moz-linear-gradient( -60deg, rgb(28, 123, 251) 0%, rgb(255, 93, 78) 100%);
+    background-image: -webkit-linear-gradient( -60deg, rgb(28, 123, 251) 0%, rgb(255, 93, 78) 100%);
+    background-image: -ms-linear-gradient( -60deg, rgb(28, 123, 251) 0%, rgb(255, 93, 78) 100%);
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+input[type=text],
+input[type=password] {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 300;
+    background-color: white;
+    border: 0;
+    -webkit-border-image: -webkit-gradient(linear, left top, left bottom, from(rgb(28, 123, 251)), to(rgb(28, 123, 251)), color-stop(0.5, rgb(28, 123, 251)), color-stop(0.5, rgb(28, 123, 251))) 21 30 30 21 repeat repeat;
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    width: 100%;
+}
+
+#boxAuth {
+    padding: 2vw 0 2vw;
+    background: white;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.loginContent {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    width: 70%;
+    text-align: left;
+}
+
+.btnSend {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 300;
+    background-color: #00bdff;
+    border-radius: 10px;
+    border: none;
+    min-width: 200px;
+    margin-top: 5px;
+    color: white;
+}
+
+.btnSend:hover {
+    box-shadow: 0px 0px 10px 0px rgba(0, 189, 255, 0.5);
+}
+
+.btnSend:active {
+    background-color: #00a9e9;
+}
+
+#topBar {
+    padding: 0;
+    height: 0;
+    visibility: hidden;
+}
+
+@media only screen and (min-height: 450px) {
+    .loginContent {
+        margin-top: 80px;
+    }
+    #boxAuth {
+        padding: 2.5vw 5vw 4vw 5vw;
+        min-width: 350px;
+        width: 50vw;
+        text-align: center;
+    }
+    .btnSend {
+        margin-top: 50px;
+        padding: 15px 0 15px 0;
+    }
+}
+
+@media only screen and (min-width: 730px) {
+    #sideBar {
+        width: 0;
+    }
+    #contentBody {
+        margin: 0;
+        padding: 0;
+    }
+}
