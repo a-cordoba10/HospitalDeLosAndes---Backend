@@ -22,7 +22,7 @@ public class Reporte {
 	
 	private Date fecha;
 	public enum TipoReporte {
-		DECISION, TRATAMIENTO, DIAGNOSTICO, EXAMÉN
+		DECISION, TRATAMIENTO, DIAGNOSTICO, EXAMEN
 	}
 	private String descripcion;
 	private String idDoctor;

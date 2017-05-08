@@ -20,6 +20,13 @@ import javax.ws.rs.QueryParam;
 
 @Path("medicos")
 public class MedicoRecursos {
+    
+        @GET
+	@PermitAll
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getAllMedicos() {
+		return MedicoDAO.getAllMedicos();
+	}
 	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)

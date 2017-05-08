@@ -11,7 +11,20 @@ import com.mongodb.MongoClientURI;
 public class HospitalLosAlpesDB {
 	
 
-	private static String MONGO_URI = "mongodb://elcrack:masterdb@ds145329.mlab.com:45329/hospitallosaples"; 
+//	private static String MONGO_URI = "mongodb://localhost:27017"; 
+    
+    
+    private static String Dispositivo;
+
+    public static String getDispositivo() {
+        return Dispositivo;
+    }
+
+    public static void setDispositivo(String Dispositivo) {
+        HospitalLosAlpesDB.Dispositivo = Dispositivo;
+    }
+    
+        private static String MONGO_URI = "mongodb://elcrack:masterdb@ds145329.mlab.com:45329/hospitallosaples"; 
 
 	private static String MONGO__DB = "hospitallosaples";
 	

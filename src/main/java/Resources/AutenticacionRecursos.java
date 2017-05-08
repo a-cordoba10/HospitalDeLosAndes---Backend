@@ -10,6 +10,7 @@ import DAO.PacienteDAO;
 import DTO.Medico;
 import DTO.Paciente;
 import DTO.Wrapper;
+import Utilities.HospitalLosAlpesDB;
 import Utilities.ResponseHospitalLosAlpes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -53,6 +54,13 @@ public class AutenticacionRecursos {
             Wrapper respuesta = new Wrapper("exitoso", "doctor");
             respuesta.setUsuario(buscado);
             return ResponseHospitalLosAlpes.buildResponse(respuesta, Response.Status.OK);
+    }
+    
+    @GET
+    @Path("key")
+    public Response guardarId (@QueryParam("key") String key){
+        HospitalLosAlpesDB.setDispositivo(key);
+        return ResponseHospitalLosAlpes.buildResponse("ok", Response.Status.OK);
     }
     
     
